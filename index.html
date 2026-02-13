@@ -7,6 +7,13 @@
     <title>harmonica-hero-waiting-list</title>
   </head>
   <body>
+    <!-- Netlify Form Detection -->
+    <form name="waiting-list" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="paymentPreference" />
+      <input type="number" name="price" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

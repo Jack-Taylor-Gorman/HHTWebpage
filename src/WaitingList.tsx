@@ -18,15 +18,26 @@ export const WaitingList: React.FC = () => {
             return;
         }
 
-        // Simulating API call
-        console.log({ name, email, price, paymentPreference });
-        setError('');
-        alert('Thanks for joining! We will notify you when we launch.');
-        setName('');
-        setEmail('');
-        setPrice('');
-        setPaymentPreference('subscription');
-        setSubmitted(true);
+        const formData = new FormData();
+        formData.append('form-name', 'waiting-list');
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('paymentPreference', paymentPreference);
+        formData.append('price', price);
+
+        fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData as any).toString()
+        })
+            .then(() => {
+                setSubmitted(true);
+                setError('');
+            })
+            .catch((error) => {
+                console.error('Form submission error:', error);
+                setError('Something went wrong. Please try again.');
+            });
     };
 
     if (submitted) {
@@ -63,11 +74,13 @@ export const WaitingList: React.FC = () => {
 
                                 {error && <div className="error-message">{error}</div>}
 
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={handleSubmit} data-netlify="true" name="waiting-list">
+                                    <input type="hidden" name="form-name" value="waiting-list" />
                                     <div className="form-group">
                                         <label htmlFor="name">Name</label>
                                         <input
                                             type="text"
+                                            name="name"
                                             id="name"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
@@ -79,6 +92,7 @@ export const WaitingList: React.FC = () => {
                                         <label htmlFor="email">Email</label>
                                         <input
                                             type="email"
+                                            name="email"
                                             id="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -116,7 +130,9 @@ export const WaitingList: React.FC = () => {
                                             placeholder="0.00"
                                             min="0"
                                             step="0.01"
+                                            name="price"
                                         />
+                                        <input type="hidden" name="paymentPreference" value={paymentPreference} />
                                     </div>
 
                                     <button type="submit" className="submit-btn">Join the List</button>
