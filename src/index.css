@@ -1,0 +1,591 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+/* Orange Theme Overrides - White Background Redesign */
+:root {
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #2a2a2a;
+  /* Dark text */
+  background-color: #ffffff;
+  /* White Background */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  /* Explicit White */
+}
+
+#root {
+  width: 100%;
+}
+
+/* Page Layout */
+.waiting-list-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.waiting-list-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Mobile Padding Adjustment */
+@media (max-width: 600px) {
+  .waiting-list-container {
+    padding: 0 1rem 2rem;
+    gap: 2rem;
+  }
+}
+
+header {
+  text-align: center;
+  width: 100%;
+}
+
+.logo-img {
+  height: 150px;
+  width: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(230, 81, 0, 0.2);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .logo-img {
+    height: 100px;
+  }
+}
+
+h1 {
+  font-size: 3.5em;
+  line-height: 1.1;
+  color: #E65100;
+  /* Orange Title */
+  text-shadow: none;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5em;
+  }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #666;
+  /* Grey subtitle */
+  font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* Slider Styles */
+.game-demo-wrapper.slider-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 4px solid #fff;
+
+  /* Grid stack for auto-height based on image */
+  display: grid;
+  grid-template-areas: "stack";
+}
+
+.game-demo-wrapper.slider-container>* {
+  grid-area: stack;
+}
+
+.slide {
+  width: 100%;
+  height: auto;
+  /* Natural height */
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #E65100;
+  /* Solid Orange */
+  color: white;
+  padding: 12px 40px;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  box-shadow: 0 5px 15px rgba(230, 81, 0, 0.4);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Main Content - Split Layout */
+.main-content {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.content-split {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+}
+
+.demo-section {
+  flex: 1.2;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-section {
+  flex: 1;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Slider Styles (Restored) */
+.game-demo-wrapper.slider-container {
+  height: 600px;
+  /* Fixed height for portrait slides */
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border: 4px solid #fff;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide-wrapper.active {
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Background Blur Layer */
+.slide-bg-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px) brightness(0.6);
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Foreground Content Layer */
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+/* Card Form Styles (Standard) */
+.card-form {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.card-form h2 {
+  color: #E65100;
+  /* Orange Header */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.card-form p {
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.card-form label {
+  color: #222;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 700px) {
+  .waiting-list-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    /* Much smaller title */
+    margin: 0.5rem 0;
+    word-wrap: break-word;
+    /* Prevent overflow */
+  }
+
+  .logo-img {
+    height: 80px;
+    /* Smaller logo */
+    margin-bottom: 0.5rem;
+  }
+
+  /* Stack the Split Content */
+  .content-split {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .demo-section,
+  .form-section {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+  }
+
+  .game-demo-wrapper.slider-container {
+    height: 500px;
+    /* Reduced height for mobile */
+  }
+
+  /* Typography Adjustments */
+  h1 {
+    font-size: 2.2rem;
+    margin: 0.5rem 0;
+  }
+
+  /* Stack the Hero Section */
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .hero-background {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    /* Fixed height for slider on mobile */
+    order: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-overlay {
+    position: relative;
+    width: 100%;
+    height: auto;
+    order: 2;
+    padding: 0;
+    display: block;
+    pointer-events: auto;
+  }
+
+  .card-form.overlay-card {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    background: white;
+    /* Solid background */
+    padding: 1.5rem;
+    border: 1px solid #eee;
+  }
+
+  .slide.active {
+    opacity: 1;
+    /* Full brightness */
+  }
+
+  .slide-bg-blur {
+    display: none;
+    /* Hide blur layer on mobile for performance/cleanliness */
+  }
+
+  .slide-content {
+    object-fit: cover;
+    /* Fill the small banner area */
+    filter: none;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  color: #444;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #fcfcfc;
+  color: #333;
+  font-size: 1.1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #E65100;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(230, 81, 0, 0.15);
+}
+
+button.submit-btn {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  padding: 1.2em;
+  font-size: 1.1em;
+  font-weight: 800;
+  font-family: inherit;
+  background-color: #E65100;
+  /* Orange Button */
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(230, 81, 0, 0.3);
+  margin-top: 1rem;
+}
+
+button.submit-btn:hover {
+  background-color: #FF6D00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(230, 81, 0, 0.4);
+}
+
+button.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Payment Toggle */
+.payment-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  color: #666;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.toggle-btn.active {
+  background: #fff3e0;
+  /* Light Orange BG */
+  border-color: #E65100;
+  color: #E65100;
+  box-shadow: 0 2px 8px rgba(230, 81, 0, 0.15);
+}
+
+.toggle-btn:hover:not(.active) {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+/* Messages */
+.error-message {
+  color: #d32f2f;
+  background: #FFEBEE;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #FFCDD2;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  color: #1b5e20;
+  background: #e8f5e9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border: 1px solid #c8e6c9;
+  text-align: center;
+}
+
+a {
+  font-weight: 500;
+  color: #E65100;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #FF6D00;
+  text-decoration: underline;
+}
+
+/* Video Section */
+.video-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.video-section h2 {
+  color: #E65100;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tuner Styles Override */
+.display {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  min-width: 300px;
+  border: 2px solid var(--color-line);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.note-display {
+  margin-top: 2rem;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-black);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 8px solid var(--color-line);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.note-display.active {
+  border-color: var(--primary-orange);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(230, 81, 0, 0.4);
+}
+
+.hole-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.note-type {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #ccc;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.note-name {
+  font-size: 1.5rem;
+  color: var(--primary-orange);
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.waiting {
+  color: #888;
+  font-style: italic;
+  font-weight: 300;
+}
