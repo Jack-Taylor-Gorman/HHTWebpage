@@ -121,15 +121,15 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="price">What is a fair price for this app?</label>
+                                        <label htmlFor="price">What is a fair price for this app USD?</label>
                                         <input
                                             type="number"
                                             id="price"
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
-                                            placeholder="0.00"
-                                            min="0"
-                                            step="0.01"
+                                            placeholder="0.99"
+                                            min="0.99"
+                                            step="1.00"
                                             name="price"
                                         />
                                         <input type="hidden" name="paymentPreference" value={paymentPreference} />
