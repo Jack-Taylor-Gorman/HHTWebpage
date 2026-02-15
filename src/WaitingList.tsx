@@ -6,6 +6,7 @@ export const WaitingList: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [price, setPrice] = useState('');
+    const [featureRequest, setFeatureRequest] = useState('');
     const [paymentPreference, setPaymentPreference] = useState('subscription');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
@@ -24,6 +25,7 @@ export const WaitingList: React.FC = () => {
         formData.append('email', email);
         formData.append('paymentPreference', paymentPreference);
         formData.append('price', price);
+        formData.append('featureRequest', featureRequest);
 
         fetch('/', {
             method: 'POST',
@@ -121,7 +123,7 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="price">What is a fair price for this app?</label>
+                                        <label htmlFor="price">What is a fair price for this app? <span className="optional">(Optional)</span></label>
                                         <input
                                             type="number"
                                             id="price"
@@ -131,8 +133,21 @@ export const WaitingList: React.FC = () => {
                                             min="0"
                                             step="0.01"
                                             name="price"
+                                            className="no-spinner"
                                         />
                                         <input type="hidden" name="paymentPreference" value={paymentPreference} />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="featureRequest">Feature you would like to see <span className="optional">(Optional)</span></label>
+                                        <textarea
+                                            id="featureRequest"
+                                            name="featureRequest"
+                                            value={featureRequest}
+                                            onChange={(e) => setFeatureRequest(e.target.value)}
+                                            placeholder="I wish the app could..."
+                                            rows={3}
+                                        />
                                     </div>
 
                                     <button type="submit" className="submit-btn">Join the List</button>
