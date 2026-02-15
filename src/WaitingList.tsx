@@ -7,6 +7,7 @@ export const WaitingList: React.FC = () => {
     const [email, setEmail] = useState('');
     const [price, setPrice] = useState('');
     const [featureRequest, setFeatureRequest] = useState('');
+    const [featureRequest, setFeatureRequest] = useState('');
     const [paymentPreference, setPaymentPreference] = useState('subscription');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
@@ -25,6 +26,7 @@ export const WaitingList: React.FC = () => {
         formData.append('email', email);
         formData.append('paymentPreference', paymentPreference);
         formData.append('price', price);
+        formData.append('featureRequest', featureRequest);
         formData.append('featureRequest', featureRequest);
 
         fetch('/', {
@@ -50,6 +52,12 @@ export const WaitingList: React.FC = () => {
                 <div className="note-display active">
                     <div className="hole-number">✓</div>
                     <div className="note-name">Subscribed</div>
+                </div>
+                <div className="social-follow">
+                    <p>Follow us on Instagram for updates!</p>
+                    <a href="https://www.instagram.com/harmonicahero" target="_blank" rel="noopener noreferrer" className="insta-link">
+                        @HARMONICAHERO
+                    </a>
                 </div>
             </div>
         );
@@ -79,7 +87,7 @@ export const WaitingList: React.FC = () => {
                                 <form onSubmit={handleSubmit} data-netlify="true" name="waiting-list">
                                     <input type="hidden" name="form-name" value="waiting-list" />
                                     <div className="form-group">
-                                        <label htmlFor="name">Name</label>
+                                        <label htmlFor="name">Name <span className="required">*</span></label>
                                         <input
                                             type="text"
                                             name="name"
@@ -91,7 +99,7 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="email">Email</label>
+                                        <label htmlFor="email">Email <span className="required">*</span></label>
                                         <input
                                             type="email"
                                             name="email"
@@ -150,6 +158,18 @@ export const WaitingList: React.FC = () => {
                                         />
                                     </div>
 
+                                    <div className="form-group">
+                                        <label htmlFor="featureRequest">Feature you would like to see <span className="optional">(Optional)</span></label>
+                                        <textarea
+                                            id="featureRequest"
+                                            name="featureRequest"
+                                            value={featureRequest}
+                                            onChange={(e) => setFeatureRequest(e.target.value)}
+                                            placeholder="I wish the app could..."
+                                            rows={3}
+                                        />
+                                    </div>
+
                                     <button type="submit" className="submit-btn">Join the List</button>
                                 </form>
                             </div>
@@ -175,6 +195,13 @@ export const WaitingList: React.FC = () => {
                             ></iframe>
                         </div>
                     </div>
+
+                    <footer className="social-footer">
+                        <p>Follow us on Instagram!</p>
+                        <a href="https://www.instagram.com/harmonicahero" target="_blank" rel="noopener noreferrer" className="insta-link">
+                            @HARMONICAHERO
+                        </a>
+                    </footer>
                 </main>
             </div >
         </div >
