@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './index.css'; // Ensure global styles are applied
-import './index.css'; // Ensure global styles are applied
 
 export const WaitingList: React.FC = () => {
     const [name, setName] = useState('');
