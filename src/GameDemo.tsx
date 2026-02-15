@@ -3,7 +3,10 @@ import './index.css';
 
 const IMAGES = [
     '/assets/slide1.jpg',
-    '/assets/slide2.jpg'
+    '/assets/insta_qr.jpg',
+    '/assets/slide2.jpg',
+    '/assets/insta_qr.jpg',
+    '/assets/slide3.jpg'
 ];
 
 export const GameDemo: React.FC = () => {

@@ -6,7 +6,6 @@ export const WaitingList: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [price, setPrice] = useState('');
-    const [featureRequest, setFeatureRequest] = useState('');
     const [paymentPreference, setPaymentPreference] = useState('subscription');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
@@ -25,7 +24,6 @@ export const WaitingList: React.FC = () => {
         formData.append('email', email);
         formData.append('paymentPreference', paymentPreference);
         formData.append('price', price);
-        formData.append('featureRequest', featureRequest);
 
         fetch('/', {
             method: 'POST',
@@ -53,8 +51,8 @@ export const WaitingList: React.FC = () => {
                 </div>
                 <div className="social-follow">
                     <p>Follow us on Instagram for updates!</p>
-                    <a href="https://www.instagram.com/harmonicahero" target="_blank" rel="noopener noreferrer" className="insta-link">
-                        @HARMONICAHERO
+                    <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link">
+                        @harmonicaher0
                     </a>
                 </div>
             </div>
@@ -78,7 +76,6 @@ export const WaitingList: React.FC = () => {
                         <div className="form-section">
                             <div className="card-form">
                                 <h2>Join the Waiting List</h2>
-                                <p>Be the first to know when we launch.</p>
 
                                 {error && <div className="error-message">{error}</div>}
 
@@ -129,7 +126,7 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="price">What is a fair price for this app? <span className="optional">(Optional)</span></label>
+                                        <label htmlFor="price">What is a fair price for this app USD? <span className="optional">(Optional)</span></label>
                                         <input
                                             type="number"
                                             id="price"
@@ -142,30 +139,6 @@ export const WaitingList: React.FC = () => {
                                             className="no-spinner"
                                         />
                                         <input type="hidden" name="paymentPreference" value={paymentPreference} />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="featureRequest">Feature you would like to see <span className="optional">(Optional)</span></label>
-                                        <textarea
-                                            id="featureRequest"
-                                            name="featureRequest"
-                                            value={featureRequest}
-                                            onChange={(e) => setFeatureRequest(e.target.value)}
-                                            placeholder="I wish the app could..."
-                                            rows={3}
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="featureRequest">Feature you would like to see <span className="optional">(Optional)</span></label>
-                                        <textarea
-                                            id="featureRequest"
-                                            name="featureRequest"
-                                            value={featureRequest}
-                                            onChange={(e) => setFeatureRequest(e.target.value)}
-                                            placeholder="I wish the app could..."
-                                            rows={3}
-                                        />
                                     </div>
 
                                     <button type="submit" className="submit-btn">Join the List</button>
@@ -196,12 +169,12 @@ export const WaitingList: React.FC = () => {
 
                     <footer className="social-footer">
                         <p>Follow us on Instagram!</p>
-                        <a href="https://www.instagram.com/harmonicahero" target="_blank" rel="noopener noreferrer" className="insta-link">
-                            @HARMONICAHERO
+                        <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link">
+                            @harmonicaher0
                         </a>
                     </footer>
                 </main>
-            </div >
-        </div >
+            </div>
+        </div>
     );
 };
