@@ -20,24 +20,26 @@ export const GameDemo: React.FC = () => {
     }, []);
 
     return (
-        <div className="game-demo-wrapper slider-container">
-            {IMAGES.map((src, index) => (
-                <div key={index} className={`slide-wrapper ${index === currentIndex ? 'active' : ''}`}>
-                    {/* Background Blur Layer */}
-                    <img
-                        src={src}
-                        alt=""
-                        className="slide-bg-blur"
-                    />
-                    {/* Foreground Contain Layer */}
-                    <img
-                        src={src}
-                        alt={`Gameplay Screenshot ${index + 1}`}
-                        className="slide-content"
-                    />
-                </div>
-            ))}
-            <div className="coming-soon-overlay">
+        <div className="game-demo-outer">
+            <div className="game-demo-wrapper slider-container">
+                {IMAGES.map((src, index) => (
+                    <div key={index} className={`slide-wrapper ${index === currentIndex ? 'active' : ''}`}>
+                        {/* Background Blur Layer */}
+                        <img
+                            src={src}
+                            alt=""
+                            className="slide-bg-blur"
+                        />
+                        {/* Foreground Contain Layer */}
+                        <img
+                            src={src}
+                            alt={`Gameplay Screenshot ${index + 1}`}
+                            className="slide-content"
+                        />
+                    </div>
+                ))}
+            </div>
+            <div className="coming-soon-label">
                 COMING SOON...
             </div>
         </div>
