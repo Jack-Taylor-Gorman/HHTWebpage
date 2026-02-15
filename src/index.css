@@ -658,6 +658,10 @@ input.no-spinner[type=number] {
   width: 100%;
 }
 
+.game-demo-wrapper.slider-container {
+  width: 100%;
+}
+
 .coming-soon-label {
   margin-top: 1.5rem;
   background: #E65100;
