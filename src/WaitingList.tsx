@@ -7,7 +7,6 @@ export const WaitingList: React.FC = () => {
     const [email, setEmail] = useState('');
     const [price, setPrice] = useState('');
     const [featureRequest, setFeatureRequest] = useState('');
-    const [featureRequest, setFeatureRequest] = useState('');
     const [paymentPreference, setPaymentPreference] = useState('subscription');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
@@ -26,7 +25,6 @@ export const WaitingList: React.FC = () => {
         formData.append('email', email);
         formData.append('paymentPreference', paymentPreference);
         formData.append('price', price);
-        formData.append('featureRequest', featureRequest);
         formData.append('featureRequest', featureRequest);
 
         fetch('/', {
