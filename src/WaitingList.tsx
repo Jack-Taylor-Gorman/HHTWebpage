@@ -10,6 +10,12 @@ export const WaitingList: React.FC = () => {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
 
+    const encode = (data: { [key: string]: string }) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -18,17 +24,16 @@ export const WaitingList: React.FC = () => {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('form-name', 'waiting-list');
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('paymentPreference', paymentPreference);
-        formData.append('price', price);
-
         fetch('/', {
             method: 'POST',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData as any).toString()
+            body: encode({
+                "form-name": "waiting-list",
+                name,
+                email,
+                paymentPreference,
+                price
+            })
         })
             .then(() => {
                 setSubmitted(true);
