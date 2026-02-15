@@ -49,6 +49,12 @@ export const WaitingList: React.FC = () => {
                     <div className="hole-number">✓</div>
                     <div className="note-name">Subscribed</div>
                 </div>
+                <div className="social-follow">
+                    <p>Follow us on Instagram for updates!</p>
+                    <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link">
+                        @harmonicaher0
+                    </a>
+                </div>
             </div>
         );
     }
@@ -70,14 +76,13 @@ export const WaitingList: React.FC = () => {
                         <div className="form-section">
                             <div className="card-form">
                                 <h2>Join the Waiting List</h2>
-                                <p>Be the first to know when we launch.</p>
 
                                 {error && <div className="error-message">{error}</div>}
 
                                 <form onSubmit={handleSubmit} data-netlify="true" name="waiting-list">
                                     <input type="hidden" name="form-name" value="waiting-list" />
                                     <div className="form-group">
-                                        <label htmlFor="name">Name</label>
+                                        <label htmlFor="name">Name <span className="required">*</span></label>
                                         <input
                                             type="text"
                                             name="name"
@@ -89,7 +94,7 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="email">Email</label>
+                                        <label htmlFor="email">Email <span className="required">*</span></label>
                                         <input
                                             type="email"
                                             name="email"
@@ -121,16 +126,17 @@ export const WaitingList: React.FC = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="price">What is a fair price for this app USD?</label>
+                                        <label htmlFor="price">What is a fair price for this app USD? <span className="optional">(Optional)</span></label>
                                         <input
                                             type="number"
                                             id="price"
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
-                                            placeholder="0.99"
-                                            min="0.99"
-                                            step="1.00"
+                                            placeholder="0.00"
+                                            min="0"
+                                            step="0.01"
                                             name="price"
+                                            className="no-spinner"
                                         />
                                         <input type="hidden" name="paymentPreference" value={paymentPreference} />
                                     </div>
@@ -160,8 +166,15 @@ export const WaitingList: React.FC = () => {
                             ></iframe>
                         </div>
                     </div>
+
+                    <footer className="social-footer">
+                        <p>Follow us on Instagram!</p>
+                        <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link">
+                            @harmonicaher0
+                        </a>
+                    </footer>
                 </main>
-            </div >
-        </div >
+            </div>
+        </div>
     );
 };
