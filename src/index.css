@@ -643,6 +643,11 @@ input.no-spinner[type=number] {
   text-decoration: underline;
 }
 
+.header-insta {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
 .social-follow {
   margin-top: 2rem;
   padding-top: 1rem;

@@ -66,6 +66,9 @@ export const WaitingList: React.FC = () => {
                     <div className="logo-container">
                         <img src="/assets/logo.png" alt="Harmonica Hero Logo" className="logo-img" />
                     </div>
+                    <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link header-insta">
+                        @harmonicaher0
+                    </a>
                     <h1>Harmonica Hero Tabs</h1>
                     <p className="subtitle">Play immediately. Have fun. Sound great.</p>
                 </header>
