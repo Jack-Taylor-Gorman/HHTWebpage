@@ -43,8 +43,8 @@ export const WaitingList: React.FC = () => {
     if (submitted) {
         return (
             <div className="waiting-list-container success">
-                <h1>Welcome to the Legion!</h1>
-                <p>You're on the list. We'll be in touch soon.</p>
+                <h1>You're in!</h1>
+                <p>We'll be in touch soon.</p>
                 <div className="note-display active">
                     <div className="hole-number">✓</div>
                     <div className="note-name">Subscribed</div>

@@ -535,7 +535,7 @@ a:hover {
   padding: 2rem;
   border-radius: 1rem;
   min-width: 300px;
-  border: 2px solid var(--color-line);
+  border: 2px solid #eee;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -546,18 +546,18 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--color-black);
+  background: #fff;
   border-radius: 50%;
   width: 200px;
   height: 200px;
   margin-left: auto;
   margin-right: auto;
-  border: 8px solid var(--color-line);
+  border: 8px solid #eee;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .note-display.active {
-  border-color: var(--primary-orange);
+  border-color: #E65100;
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(230, 81, 0, 0.4);
 }
@@ -565,7 +565,7 @@ a:hover {
 .hole-number {
   font-size: 4rem;
   font-weight: 800;
-  color: var(--color-white);
+  color: #E65100;
   line-height: 1;
 }
 
@@ -579,7 +579,7 @@ a:hover {
 
 .note-name {
   font-size: 1.5rem;
-  color: var(--primary-orange);
+  color: #E65100;
   font-weight: 800;
   margin-top: 0.2rem;
 }
