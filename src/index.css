@@ -18,6 +18,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -64,12 +68,53 @@ header {
   width: 100%;
 }
 
+/* Logo Slider */
+.logo-slider-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.logo-slider {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  /* Fixed width to prevent jumping */
+  margin: 0 auto 1rem;
+}
+
 .logo-img {
   height: 150px;
   width: auto;
+  max-width: 100%;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(230, 81, 0, 0.2);
-  margin-bottom: 1rem;
+  position: absolute;
+  /* Stack them */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.logo-img.visible {
+  opacity: 1;
+  z-index: 2;
+}
+
+.logo-img.hidden {
+  opacity: 0;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .logo-slider {
+    height: 100px;
+    width: 100px;
+  }
+
+  .logo-img {
+    height: 100px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -107,35 +152,7 @@ h1 {
 }
 
 /* Slider Styles */
-.game-demo-wrapper.slider-container {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  border: 4px solid #fff;
 
-  /* Grid stack for auto-height based on image */
-  display: grid;
-  grid-template-areas: "stack";
-}
-
-.game-demo-wrapper.slider-container>* {
-  grid-area: stack;
-}
-
-.slide {
-  width: 100%;
-  height: auto;
-  /* Natural height */
-  display: block;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-  z-index: 10;
-}
 
 .coming-soon-overlay {
   position: absolute;
@@ -157,82 +174,19 @@ h1 {
 }
 
 /* Main Content - Split Layout */
+/* Main Content - Centered Form */
 .main-content {
   width: 100%;
-  margin-top: 1rem;
-}
-
-.content-split {
+  margin-top: 0.5rem;
+  /* Reduced margin */
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   justify-content: center;
-  gap: 3rem;
-  width: 100%;
 }
 
-.demo-section {
-  flex: 1.2;
+.form-section.centered-form {
   width: 100%;
   max-width: 500px;
-}
-
-.form-section {
-  flex: 1;
-  width: 100%;
-  max-width: 450px;
-}
-
-/* Slider Styles (Restored) */
-.game-demo-wrapper.slider-container {
-  height: 600px;
-  /* Fixed height for portrait slides */
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  border: 4px solid #fff;
-  background: #000;
-  position: relative;
-  overflow: hidden;
-}
-
-.slide-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.slide-wrapper.active {
-  opacity: 1;
-  z-index: 5;
-}
-
-/* Background Blur Layer */
-.slide-bg-blur {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(20px) brightness(0.6);
-  transform: scale(1.1);
-  z-index: 1;
-}
-
-/* Foreground Content Layer */
-.slide-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 2;
-  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+  /* Slightly wider max-width for centered form */
 }
 
 /* Card Form Styles (Standard) */
@@ -265,109 +219,23 @@ h1 {
 }
 
 /* Mobile Responsiveness */
+/* Mobile Responsiveness */
 @media (max-width: 700px) {
   .waiting-list-container {
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    /* Reduced padding */
+    gap: 1rem;
   }
 
   h1 {
     font-size: 2rem;
-    /* Much smaller title */
     margin: 0.5rem 0;
     word-wrap: break-word;
-    /* Prevent overflow */
   }
 
-  .logo-img {
-    height: 80px;
-    /* Smaller logo */
-    margin-bottom: 0.5rem;
-  }
-
-  /* Stack the Split Content */
-  .content-split {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .demo-section,
-  .form-section {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
-  }
-
-  .game-demo-wrapper.slider-container {
-    height: 500px;
-    /* Reduced height for mobile */
-  }
-
-  /* Typography Adjustments */
-  h1 {
-    font-size: 2.2rem;
-    margin: 0.5rem 0;
-  }
-
-  /* Stack the Hero Section */
-  .hero-section {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .hero-background {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    /* Fixed height for slider on mobile */
-    order: 1;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .hero-overlay {
-    position: relative;
-    width: 100%;
-    height: auto;
-    order: 2;
-    padding: 0;
-    display: block;
-    pointer-events: auto;
-  }
-
-  .card-form.overlay-card {
-    width: 100%;
-    max-width: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-radius: 16px;
-    background: white;
-    /* Solid background */
+  .card-form {
     padding: 1.5rem;
-    border: 1px solid #eee;
-  }
-
-  .slide.active {
-    opacity: 1;
-    /* Full brightness */
-  }
-
-  .slide-bg-blur {
-    display: none;
-    /* Hide blur layer on mobile for performance/cleanliness */
-  }
-
-  .slide-content {
-    object-fit: cover;
-    /* Fill the small banner area */
-    filter: none;
+    /* Reduced padding in card */
   }
 }
 
@@ -594,6 +462,7 @@ a:hover {
 input.no-spinner::-webkit-outer-spin-button,
 input.no-spinner::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 

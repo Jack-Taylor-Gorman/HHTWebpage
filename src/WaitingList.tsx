@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css'; // Ensure global styles are applied
-import { GameDemo } from './GameDemo';
+import './index.css'; // Ensure global styles are applied
 
 export const WaitingList: React.FC = () => {
     const [name, setName] = useState('');
@@ -9,6 +9,14 @@ export const WaitingList: React.FC = () => {
     const [paymentPreference, setPaymentPreference] = useState('subscription');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
+    const [showInsta, setShowInsta] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setShowInsta(prev => !prev);
+        }, 3000); // Toggle every 3 seconds
+        return () => clearInterval(interval);
+    }, []);
 
     const encode = (data: { [key: string]: string }) => {
         return Object.keys(data)
@@ -68,94 +76,93 @@ export const WaitingList: React.FC = () => {
         <div className="waiting-list-page">
             <div className="waiting-list-container">
                 <header>
-                    <div className="logo-container">
-                        <img src="/assets/logo.png" alt="Harmonica Hero Logo" className="logo-img" />
-                    </div>
-                    <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="insta-link header-insta">
-                        @harmonicaher0
+                    <a href="https://www.instagram.com/harmonicaher0" target="_blank" rel="noopener noreferrer" className="logo-slider-link">
+                        <div className="logo-container logo-slider">
+                            <img
+                                src="/assets/logo.png"
+                                alt="Harmonica Hero Logo"
+                                className={`logo-img main-logo ${showInsta ? 'hidden' : 'visible'}`}
+                            />
+                            <img
+                                src="/assets/insta_qr.jpg"
+                                alt="Instagram QR"
+                                className={`logo-img insta-logo ${showInsta ? 'visible' : 'hidden'}`}
+                            />
+                        </div>
                     </a>
                     <h1>Harmonica Hero Tabs</h1>
-                    <p className="subtitle">Play immediately. Have fun. Sound great.</p>
                 </header>
 
                 <main className="main-content">
-                    <div className="content-split">
+                    <div className="form-section centered-form">
+                        <div className="card-form">
+                            <h2>Join the Waiting List</h2>
 
-                        <div className="form-section">
-                            <div className="card-form">
-                                <h2>Join the Waiting List</h2>
+                            {error && <div className="error-message">{error}</div>}
 
-                                {error && <div className="error-message">{error}</div>}
+                            <form onSubmit={handleSubmit} data-netlify="true" name="waiting-list">
+                                <input type="hidden" name="form-name" value="waiting-list" />
+                                <div className="form-group">
+                                    <label htmlFor="name">Name <span className="required">*</span></label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="Your Name"
+                                    />
+                                </div>
 
-                                <form onSubmit={handleSubmit} data-netlify="true" name="waiting-list">
-                                    <input type="hidden" name="form-name" value="waiting-list" />
-                                    <div className="form-group">
-                                        <label htmlFor="name">Name <span className="required">*</span></label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            placeholder="Your Name"
-                                        />
+                                <div className="form-group">
+                                    <label htmlFor="email">Email <span className="required">*</span></label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="price">What is a fair price for this app USD? <span className="optional">(Optional)</span></label>
+                                    <input
+                                        type="number"
+                                        id="price"
+                                        value={price}
+                                        onChange={(e) => setPrice(e.target.value)}
+                                        placeholder="0.00"
+                                        min="0"
+                                        step="0.01"
+                                        name="price"
+                                        className="no-spinner"
+                                    />
+                                </div>
+
+                                <div className="form-group payment-group">
+                                    <div className="payment-toggle">
+                                        <button
+                                            type="button"
+                                            className={`toggle-btn ${paymentPreference === 'subscription' ? 'active' : ''}`}
+                                            onClick={() => setPaymentPreference('subscription')}
+                                        >
+                                            Subscription
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className={`toggle-btn ${paymentPreference === 'one-time' ? 'active' : ''}`}
+                                            onClick={() => setPaymentPreference('one-time')}
+                                        >
+                                            One-Time
+                                        </button>
                                     </div>
+                                    <input type="hidden" name="paymentPreference" value={paymentPreference} />
+                                </div>
 
-                                    <div className="form-group">
-                                        <label htmlFor="email">Email <span className="required">*</span></label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            id="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="your@email.com"
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label>Payment Preference</label>
-                                        <div className="payment-toggle">
-                                            <button
-                                                type="button"
-                                                className={`toggle-btn ${paymentPreference === 'subscription' ? 'active' : ''}`}
-                                                onClick={() => setPaymentPreference('subscription')}
-                                            >
-                                                Subscription
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className={`toggle-btn ${paymentPreference === 'one-time' ? 'active' : ''}`}
-                                                onClick={() => setPaymentPreference('one-time')}
-                                            >
-                                                One-Time
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="price">What is a fair price for this app USD? <span className="optional">(Optional)</span></label>
-                                        <input
-                                            type="number"
-                                            id="price"
-                                            value={price}
-                                            onChange={(e) => setPrice(e.target.value)}
-                                            placeholder="0.00"
-                                            min="0"
-                                            step="0.01"
-                                            name="price"
-                                            className="no-spinner"
-                                        />
-                                        <input type="hidden" name="paymentPreference" value={paymentPreference} />
-                                    </div>
-
-                                    <button type="submit" className="submit-btn">Join the List</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className="demo-section">
-                            <GameDemo />
+                                <button type="submit" className="submit-btn">Join the List</button>
+                            </form>
                         </div>
                     </div>
 
