@@ -30,6 +30,12 @@ body {
   min-height: 100vh;
   background-color: #ffffff;
   /* Explicit White */
+  overflow-x: hidden;
+  /* Prevent body scroll */
+}
+
+iframe {
+  max-width: 100%;
 }
 
 #root {
@@ -179,8 +185,19 @@ h1 {
   width: 100%;
   margin-top: 0.5rem;
   /* Reduced margin */
+  /* Reduced margin */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  /* Allow flex shrink */
+}
+
+.form-section,
+.video-section {
+  min-width: 0;
+  width: 100%;
 }
 
 .form-section.centered-form {
@@ -223,8 +240,11 @@ h1 {
 @media (max-width: 700px) {
   .waiting-list-container {
     padding: 1rem 0.5rem;
-    /* Reduced padding */
     gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
   }
 
   h1 {
@@ -233,9 +253,23 @@ h1 {
     word-wrap: break-word;
   }
 
+  .main-content {
+    width: 100%;
+  }
+
+  .form-section.centered-form,
+  .video-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .card-form {
     padding: 1.5rem;
-    /* Reduced padding in card */
+    width: 100%;
+  }
+
+  .payment-toggle {
+    flex-direction: column;
   }
 }
 
