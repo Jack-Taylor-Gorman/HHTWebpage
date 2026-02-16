@@ -5,12 +5,26 @@ export const WaitingList: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [price, setPrice] = useState('');
-    const [paymentPreference, setPaymentPreference] = useState('subscription');
+    const [currency, setCurrency] = useState('USD');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
     const [showInsta, setShowInsta] = useState(false);
 
     useEffect(() => {
+        // Simple currency detection based on timezone
+        try {
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (timeZone) {
+                if (timeZone.startsWith('Europe/London')) setCurrency('GBP');
+                else if (timeZone.startsWith('Europe/')) setCurrency('EUR');
+                else if (timeZone.startsWith('Australia/')) setCurrency('AUD');
+                else if (timeZone.startsWith('America/Toronto') || timeZone.startsWith('America/Vancouver')) setCurrency('CAD');
+                // Default is USD, covers most of Americas/Asia for global pricing usually
+            }
+        } catch (e) {
+            console.log('Currency detection failed, defaulting to USD');
+        }
+
         const interval = setInterval(() => {
             setShowInsta(prev => !prev);
         }, 3000); // Toggle every 3 seconds
@@ -38,7 +52,7 @@ export const WaitingList: React.FC = () => {
                 "form-name": "waiting-list",
                 name,
                 email,
-                paymentPreference,
+                paymentPreference: 'subscription',
                 price
             })
         })
@@ -126,39 +140,29 @@ export const WaitingList: React.FC = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="price">What is a fair price for this app USD? <span className="optional">(Optional)</span></label>
-                                    <input
-                                        type="number"
-                                        id="price"
-                                        value={price}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                        placeholder="0.00"
-                                        min="0"
-                                        step="0.01"
-                                        name="price"
-                                        className="no-spinner"
-                                    />
-                                </div>
-
-                                <div className="form-group payment-group">
-                                    <div className="payment-toggle">
-                                        <button
-                                            type="button"
-                                            className={`toggle-btn ${paymentPreference === 'subscription' ? 'active' : ''}`}
-                                            onClick={() => setPaymentPreference('subscription')}
-                                        >
-                                            Subscription
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className={`toggle-btn ${paymentPreference === 'one-time' ? 'active' : ''}`}
-                                            onClick={() => setPaymentPreference('one-time')}
-                                        >
-                                            One-Time
-                                        </button>
+                                    <label htmlFor="price">What's a fair price? <span className="optional">(Optional)</span></label>
+                                    <div className="price-input-wrapper">
+                                        <span className="currency-prefix">$</span>
+                                        <input
+                                            type="number"
+                                            id="price"
+                                            value={price}
+                                            onChange={(e) => setPrice(e.target.value)}
+                                            placeholder="0.00"
+                                            min="0"
+                                            step="0.01"
+                                            name="price"
+                                            className="no-spinner price-input"
+                                        />
+                                        <span className="currency-suffix">
+                                            {currency} / month
+                                        </span>
                                     </div>
-                                    <input type="hidden" name="paymentPreference" value={paymentPreference} />
+                                    <p className="discount-text">
+                                        Submit a price to get a <strong>20% discount</strong>!
+                                    </p>
                                 </div>
+                                <input type="hidden" name="paymentPreference" value="subscription" />
 
                                 <button type="submit" className="submit-btn">Join the List</button>
                             </form>

@@ -303,7 +303,48 @@ input:focus {
   box-shadow: 0 0 0 4px rgba(230, 81, 0, 0.15);
 }
 
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.price-input {
+  padding-left: 1.5rem;
+  /* Space for $ */
+  padding-right: 6rem;
+  /* Space for suffix */
+}
+
+.currency-prefix {
+  position: absolute;
+  left: 10px;
+  color: #777;
+  font-weight: bold;
+}
+
+.currency-suffix {
+  position: absolute;
+  right: 10px;
+  color: #777;
+  font-size: 0.9em;
+  pointer-events: none;
+}
+
+.discount-text {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #2E7D32 !important;
+  /* Green for discount */
+}
+
+input:focus+.currency-suffix {
+  color: #E65100;
+}
+
 button.submit-btn {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   border-radius: 10px;
   border: none;
