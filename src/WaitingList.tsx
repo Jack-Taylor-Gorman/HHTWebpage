@@ -77,8 +77,8 @@ export const WaitingList: React.FC = () => {
                 </div>
                 <div className="social-follow">
                     <p>Follow us on Instagram for updates!</p>
-                    <a href="https://www.instagram.com/harmonicaherotabs/" target="_blank" rel="noopener noreferrer" className="insta-link">
-                        @harmonicaherotabs
+                    <a href="https://www.instagram.com/harmonicahero/" target="_blank" rel="noopener noreferrer" className="insta-link">
+                        @harmonicahero
                     </a>
                 </div>
             </div>
@@ -89,7 +89,7 @@ export const WaitingList: React.FC = () => {
         <div className="waiting-list-page">
             <div className="waiting-list-container">
                 <header>
-                    <a href="https://www.instagram.com/harmonicaherotabs/" target="_blank" rel="noopener noreferrer" className="logo-slider-link">
+                    <a href="https://www.instagram.com/harmonicahero/" target="_blank" rel="noopener noreferrer" className="logo-slider-link">
                         <div className="logo-container logo-slider">
                             <img
                                 src="/assets/logo.png"
@@ -187,8 +187,8 @@ export const WaitingList: React.FC = () => {
 
                     <footer className="social-footer">
                         <p>Follow us on Instagram!</p>
-                        <a href="https://www.instagram.com/harmonicaherotabs/" target="_blank" rel="noopener noreferrer" className="insta-link">
-                            @harmonicaherotabs
+                        <a href="https://www.instagram.com/harmonicahero/" target="_blank" rel="noopener noreferrer" className="insta-link">
+                            @harmonicahero
                         </a>
                     </footer>
                 </main>
